@@ -1,0 +1,191 @@
+export const MARKETPLACES = {
+  US: {
+    code: 'US',
+    name: 'United States',
+    amazonDomain: 'amazon.com',
+    currency: 'USD',
+    currencySymbol: '$',
+    language: 'en_US',
+    flag: '🇺🇸',
+    timezone: 'America/New_York',
+    enabled: true,
+    priority: 1,
+  },
+  UK: {
+    code: 'UK',
+    name: 'United Kingdom',
+    amazonDomain: 'amazon.co.uk',
+    currency: 'GBP',
+    currencySymbol: '£',
+    language: 'en_GB',
+    flag: '🇬🇧',
+    timezone: 'Europe/London',
+    enabled: false,
+    priority: 2,
+  },
+  AU: {
+    code: 'AU',
+    name: 'Australia',
+    amazonDomain: 'amazon.com.au',
+    currency: 'AUD',
+    currencySymbol: 'A$',
+    language: 'en_AU',
+    flag: '🇦🇺',
+    timezone: 'Australia/Sydney',
+    enabled: false,
+    priority: 3,
+  },
+  CA: {
+    code: 'CA',
+    name: 'Canada',
+    amazonDomain: 'amazon.ca',
+    currency: 'CAD',
+    currencySymbol: 'C$',
+    language: 'en_CA',
+    flag: '🇨🇦',
+    timezone: 'America/Toronto',
+    enabled: false,
+    priority: 4,
+  },
+  DE: {
+    code: 'DE',
+    name: 'Germany',
+    amazonDomain: 'amazon.de',
+    currency: 'EUR',
+    currencySymbol: '€',
+    language: 'de_DE',
+    flag: '🇩🇪',
+    timezone: 'Europe/Berlin',
+    enabled: false,
+    priority: 5,
+  },
+  FR: {
+    code: 'FR',
+    name: 'France',
+    amazonDomain: 'amazon.fr',
+    currency: 'EUR',
+    currencySymbol: '€',
+    language: 'fr_FR',
+    flag: '🇫🇷',
+    timezone: 'Europe/Paris',
+    enabled: false,
+    priority: 6,
+  },
+  IT: {
+    code: 'IT',
+    name: 'Italy',
+    amazonDomain: 'amazon.it',
+    currency: 'EUR',
+    currencySymbol: '€',
+    language: 'it_IT',
+    flag: '🇮🇹',
+    timezone: 'Europe/Rome',
+    enabled: false,
+    priority: 7,
+  },
+  ES: {
+    code: 'ES',
+    name: 'Spain',
+    amazonDomain: 'amazon.es',
+    currency: 'EUR',
+    currencySymbol: '€',
+    language: 'es_ES',
+    flag: '🇪🇸',
+    timezone: 'Europe/Madrid',
+    enabled: false,
+    priority: 8,
+  },
+  JP: {
+    code: 'JP',
+    name: 'Japan',
+    amazonDomain: 'amazon.co.jp',
+    currency: 'JPY',
+    currencySymbol: '¥',
+    language: 'ja_JP',
+    flag: '🇯🇵',
+    timezone: 'Asia/Tokyo',
+    enabled: false,
+    priority: 9,
+  },
+  IN: {
+    code: 'IN',
+    name: 'India',
+    amazonDomain: 'amazon.in',
+    currency: 'INR',
+    currencySymbol: '₹',
+    language: 'en_IN',
+    flag: '🇮🇳',
+    timezone: 'Asia/Kolkata',
+    enabled: false,
+    priority: 10,
+  },
+  AE: {
+    code: 'AE',
+    name: 'United Arab Emirates',
+    amazonDomain: 'amazon.ae',
+    currency: 'AED',
+    currencySymbol: 'د.إ',
+    language: 'en_AE',
+    flag: '🇦🇪',
+    timezone: 'Asia/Dubai',
+    enabled: false,
+    priority: 11,
+  },
+  BR: {
+    code: 'BR',
+    name: 'Brazil',
+    amazonDomain: 'amazon.com.br',
+    currency: 'BRL',
+    currencySymbol: 'R$',
+    language: 'pt_BR',
+    flag: '🇧🇷',
+    timezone: 'America/Sao_Paulo',
+    enabled: false,
+    priority: 12,
+  },
+  MX: {
+    code: 'MX',
+    name: 'Mexico',
+    amazonDomain: 'amazon.com.mx',
+    currency: 'MXN',
+    currencySymbol: 'Mex$',
+    language: 'es_MX',
+    flag: '🇲🇽',
+    timezone: 'America/Mexico_City',
+    enabled: false,
+    priority: 13,
+  },
+  SG: {
+    code: 'SG',
+    name: 'Singapore',
+    amazonDomain: 'amazon.sg',
+    currency: 'SGD',
+    currencySymbol: 'S$',
+    language: 'en_SG',
+    flag: '🇸🇬',
+    timezone: 'Asia/Singapore',
+    enabled: false,
+    priority: 14,
+  },
+};
+
+export const DEFAULT_MARKETPLACE = 'US';
+
+export function getEnabledMarketplaces() {
+  return Object.values(MARKETPLACES)
+    .filter(m => m.enabled)
+    .sort((a, b) => a.priority - b.priority);
+}
+
+export function getMarketplace(code) {
+  return MARKETPLACES[code] || MARKETPLACES[DEFAULT_MARKETPLACE];
+}
+
+export function getAllMarketplaces() {
+  return Object.values(MARKETPLACES).sort((a, b) => a.priority - b.priority);
+}
+
+export function isMarketplaceEnabled(code) {
+  const marketplace = MARKETPLACES[code];
+  return marketplace ? marketplace.enabled : false;
+}
